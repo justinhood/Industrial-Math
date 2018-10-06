@@ -1,0 +1,75 @@
+\documentclass[12pt]{amsart}
+
+% theorem style
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{prob}[thm]{Problem}
+
+% non-theorem style
+\theoremstyle{definition}
+\newtheorem{defin}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{exa}[thm]{Example}
+
+% macros go here
+
+\begin{document}
+
+\title[]{Proof of the Quadratic Equation}
+\author{Justin Hood}
+\address{}
+\email{hoodj5402@uwstout.edu}
+
+%\date{September 7, 2018}
+
+\begin{abstract}
+In the paper that follows, an analytical proof of the so called ``quadratic formula" shall be derived.  Implementing the method of completing the square \cite{complete}, and some clever algebraic manipulation, we will derive the classic formula used to compute roots of quadratic equations.
+\end{abstract}
+
+\maketitle
+
+\section{Quadratic Theorem}
+A quadratic equation in mathematics is a polynomial equation wherein the highest order power of the unknown variable is $2$. Thus, we note that in general, a quadratic equation takes the form, $ax^2+bx+c=0$, with $a\neq 0$. With this definition in mind, we consider the following theorem.
+\thm[Quadratic Theorem]\hfill\\\\
+Let an equation of the form,
+\begin{equation}\label{quad}
+Ax^2+Bx+C=0
+\end{equation}
+exist, with $A,B,C\in\mathbb{C}$, $A\neq 0$. Then, the solutions of this equation shall take the form,
+\[x=\frac{-B\pm\sqrt{B^2-4AC}}{2A}\]
+\hfill\\
+\section{Proof}
+\begin{proof}
+Let $A,B,C$ exist, such that $A,B,C\in\mathbb{C}$, and $A\neq 0$. Then, we consider equation (\ref{quad}), and perform some basic algebraic manipulation.
+\begin{align*}
+Ax^2+Bx+C & =0 &&\\
+x^2+\frac{B}{A}x+\frac{C}{A}&=0 && \text{Divide by $A$} \\
+x^2+\frac{B}{A}x&=-\frac{C}{A} && \text{Subtract the constant} \\
+\end{align*}
+Next, we shall ``Complete the Square"\cite{complete}, by introducing a new constant to both sides, and manipulating the LHS of the equation into the square of a binomial,
+\begin{align*}
+x^2+\frac{B}{A}x+\bigg(\frac{B}{2A}\bigg)^2&=-\frac{C}{A}+\bigg(\frac{B}{2A}\bigg)^2 && \text{Add the new constant} \\
+\bigg(x+\frac{B}{2A}\bigg)^2 &= \bigg(\frac{B}{2A}\bigg)^2-\frac{C}{A} && \text{Factor into the binomial form}
+\end{align*}
+Finally, we may begin to solve for $x$,
+\begin{align*}
+\bigg(x+\frac{B}{2A}\bigg)^2 &= \frac{B^2-4AC}{4A^2} && \text{Simplify RHS}\\
+x+\frac{B}{2A}&=\pm\sqrt{\frac{B^2-4AC}{4A^2}} && \text{Take the square root} \\
+x&=-\frac{B}{2A}\pm\frac{\sqrt{B^2-4AC}}{2A} && \text{Simplify}\\
+x&=\frac{-B\pm\sqrt{B^2-4AC}}{2A}
+\end{align*}
+Thus, we have arrived at our desired result, and shown that the solutions of a quadratic equation adhere to the ``Quadratic Formula".
+\end{proof}
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{complete}
+Stapel, E.
+\textit{Completing the Square: Solving Quadratic Equations | Purplemath}. [online] Purplemath. Available at: 
+\texttt{https://www.purplemath.com/modules/sqrquad.htm}
+
+\end{thebibliography}
+
+\end{document}

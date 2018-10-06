@@ -1,0 +1,193 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[top=2cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{\today}
+\chead{MATH 710 Assignment 2}
+\rhead{Justin Hood}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+\begin{enumerate}
+\item Evaluate exactly $\lim\limits_{x\to\infty}erf(x)$, where,
+\[erf(\infty)=\frac{2}{\sqrt{\pi}}\int_{0}^{\infty}e^{-t^2}dt\]
+To begin, we consider the function $I=erf(R)$. Then, we begin by squaring $I$ and analyzing the resultant integral.
+\[I^2=\frac{4}{\pi}\int_{0}^{R}e^{-x^2}dx\int_{0}^{R}e^{-y^2}dy\]
+Fubini's Theorem allows us to combine these integrals into a double integral.
+\[I^2=\frac{4}{\pi}\int_{0}^{R}\int_{0}^{R}e^{-(x^2+y^2)}dxdy\]
+Noting the sum of squares in the exponent, we shall consider a transformation of coordinates to polar coordinates using $x=r\cos(\theta),\ y=r\sin(\theta),\ dxdy=rdrd\theta$. Given that the original double integral would cover the region of quadrant I, we shall use the bounds on the integrals, $0\leq r\leq R,\ 0\leq \theta \leq \frac{\pi}{2}$, taking the limit as $r$ tends towards infinity at the end to compute the final value. Thus, we compute the integral as follows.
+\begin{align*}
+\frac{\pi I^2}{4}&=\int_{0}^{R}\int_{0}^{R}e^{-(x^2+y^2)}dxdy \\
+&=\int_{0}^{\frac{\pi}{2}}\int_{0}^{R}re^{-(r^2\sin(\theta)^2+r^2\cos(\theta)^2)}drd\theta\\
+&=\int_{0}^{\frac{\pi}{2}}\int_{0}^{R}re^{-r^2}drd\theta\\
+&=\frac{\pi}{2}\int_{0}^{R}re^{-r^2}dr
+\end{align*}
+Noting that this integrand has a clear antiderivative, we may solve directly,
+\begin{align*}
+&=\frac{\pi}{2}\bigg(-\frac{1}{2e^{r^2}}\bigg|_0^R\bigg)\\
+&=\frac{\pi}{2}\bigg(-\frac{1}{2e^{R^2}}+\frac{1}{2}\bigg)\\
+&=\frac{\pi}{4}\bigg(-\frac{1}{e^{R^2}}+1\bigg)
+\end{align*}
+Thus, we see,
+\[I^2=-\frac{1}{e^{R^2}}+1\]
+Taking the limit as $R\to\infty$, we see,
+\[I^2=1\]
+Thus, we may compute $I=1$, as the erf function is strictly positive for positive $x$. So,
+\[erf(\infty)=\frac{2}{\sqrt{\pi}}\int_{0}^{\infty}e^{-t^2}dt=1\]
+\item We shall compute the following Taylor expansions based on our known series,
+\[e^x=\sum_{k=0}^{\infty}\frac{x^k}{k!},\ \sin(x)=\sum_{k=0}^{\infty}\frac{(-1)^kx^{2k+1}}{(2k+1)!},\ \cos(x)=\sum_{k=0}^{\infty}\frac{(-1)^kx^{2k}}{(2k)!}\]
+\begin{enumerate}
+\item Degree 2 approximation of $f(x)=e^{-3x}$ at $x_0=0$\\
+Using our known exponential expansion, we substitute this new exponent as,
+\[e^{-3x}=\sum_{k=0}^{\infty}\frac{(-3x)^k}{k!}=\sum_{k=0}^{\infty}\frac{3^k(-1)^k(x)^k}{k!}\]
+Then, our degree 2 expansion is,
+\[f(x)\approx 1-3x+\frac{9x^2}{2}\]
+So,
+\[f(0.02)\approx 1-3(0.02)+\frac{9(0.02)^2}{2}\approx 0.9418\]
+\item Degree 4 approximation of $f(x)=\frac{sin(x)}{x}$ with $x_0=0$\\
+Using our known $\sin(x)$ expansion, we substitute this new function as,
+\[\frac{\sin(x)}{x}=\sum_{k=0}^{\infty}\frac{(-1)^kx^{2k+1}}{x(2k+1)!}=\sin(x)=\sum_{k=0}^{\infty}\frac{(-1)^kx^{2k}}{(2k+1)!}\]
+Then our degree 4 expansion is,
+\[f(x)\approx 1-\frac{x^2}{6}+\frac{x^4}{120}\]
+So,
+\[f(0.5)\approx 1-\frac{0.5^2}{6}+\frac{0.5^4}{120}\approx 0.958854\]
+\item Degree 12 approximation of $f(x)=\cos(x^3)$ with $x_0=0$\\
+Using our known $\cos(x)$ expansion, we substitute this new function as,
+\[\cos(x^3)=\sum_{k=0}^{\infty}\frac{(-1)^k(x^3)^{2k}}{(2k)!}=\sum_{k=0}^{\infty}\frac{(-1)^kx^{6k}}{(2k)!}\]
+Then our degree 12 approximation is,
+\[f(x)\approx 1-\frac{x^6}{2}+\frac{x^{12}}{24}\]
+So,
+\[f(0.1)\approx 1-\frac{(0.1)^6}{2}+\frac{(0.1)^{12}}{24}\approx 0.9999995\]
+\end{enumerate}
+\item Expand,
+\[\frac{4f(x-h)-f(x-2h)-3f(x)}{2h}\]
+To the third order term.\\
+We factor each term individually,
+\begin{align*}
+f(x-h)&=f(x)-hf'(x)+\frac{h^2}{2}f''(x)-\frac{h^3}{6}f'''(x)\\
+f(x-2h)&=f(x)-2hf'(x)+\frac{4h^2}{2}f''(x)-\frac{8h^3}{6}f'''(x)
+\end{align*}
+Combining these terms with the above coefficients, we arrive at,
+\[4f(x-h)-f(x-2h)=\bigg(4f(x)-f(x)\bigg)+\bigg(-4hf'(x)+2hf'(x)\bigg)+\bigg(2h^2f''(x)-2h^2f''(x)\bigg)+\bigg(\frac{-4h^3}{6}f'''(x)+\frac{8h^3}{6}f'''(x)\bigg)\]
+Combining,
+\[4f(x-h)-f(x-2h)=3f(x)-2hf'(x)+\frac{4h^3}{6}f'''(x)\]
+Finishing off the numerator, we arrive at,
+\[4f(x-h)-f(x-2h)-3f(x)=-2hf'(x)+\frac{4h^3}{6}f'''(x)\]
+Then,
+\[\frac{4f(x-h)-f(x-2h)-3f(x)}{2h}=-f'(x)+\frac{h^2}{3}f'''(x)\]
+\item Estimate $erf(1)$
+\[erf(1)=\frac{2}{\sqrt{\pi}}\int_{0}^{1}e^{-t^2}dt\]
+\begin{enumerate}
+\item Using the RHR with 6 nodes: $erf(1)\approx 0.692442699200466$
+\item Using the LHR with 6 nodes: $erf(1)\approx 0.7977961256718922$
+\item Using the Midpoint Rule with 6 nodes: $erf(1)\approx 0.747677083350702$
+\item Using the Trapezoidal Rule with 6 nodes: $erf(1)\approx 0.7451194124361791$
+\item Using the Taylor expansion to the 8th degree polynomial: $erf(1)\approx 0.8382245241280951$
+\item Comparing the values computed above to the value computed in the $SCIPY.SPECIAL$ package, we obtain the following table of errors,\\
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Approximation & Absolute Error \\\hline
+Right Hand & $0.1502580937492488$ \\
+Left Hand & $0.04490466727782261$ \\
+Midpoint & $0.09502370959901274$ \\
+Trapezoidal & $0.09758138051353571$ \\
+Taylor & $0.004476268821619667$ \\\hline
+\end{tabular}
+\end{center}
+So we see that the integration of the Taylor Polynomial is the most accurate of this set of approximations.
+\end{enumerate}
+\item Prove that the function $f(x)=x^3+2x+k$ has exactly one zero regardless of the value of $k$.
+\begin{proof}
+Let $k>0$ and consider the function $f(x)=x^3+2x+k$. Suppose, without loss of generality, that $k>0$. Now, we consider,
+\[f(k)=\underbrace{k^3}_{\text{+}}+\underbrace{2k}_{\text{+}}+\underbrace{k}_{\text{+}}\]
+Thus, $f(k)>0$. Next, we consider,
+\[f(-k)=\underbrace{(-k)^3}_{\text{-}}+\underbrace{2(-k)}_{\text{-}}+\underbrace{(-k)}_{\text{-}}\]
+Thus, $f(-k)<0$.\\
+So, by the intermediate value theorem, we may conclude that $f(x)$ has a zero over the interval $[-k,k]$. Now, we shall claim that there is exactly one zero.\\
+Then, we suppose to the contrary that there are at least two roots, $r_1,r_2$ such that $f(r_1)=f(r_2)=0$. Since $f$ is differentiable, we may apply Rolle's Theorem, and conclude that $\exists\ \varepsilon\in(r_1,r_2)$ such that $f'(\varepsilon)=0$. But,
+\[f'(x)=3x^2+2>0\ \forall x\]
+a contradiction.\\
+Thus, we see that there may only be one zero of this function. So, we have shown that there is only one zero of $f(x)=x^3+2x+k$ regardless of your choice in $k$.
+\end{proof}
+\item What is the error in a Taylor polynomial of degree four where,
+\[f(x)=\sqrt{x},\ x_0=\frac{9}{16},\ x\in[\frac{1}{4},1]\]
+We consider the function defining absolute error as follows,
+\[E_n(x_0;\xi)=|R_n(x_0;\xi)|=\bigg|\frac{f^{n+1}(\xi)}{(n+1)!}(x-x_0)^{n+1}\bigg|\]
+Substituting $n=4$ and $f(x)=\sqrt{x}$ We arrive at the function,
+\[E_4(\frac{9}{16};\xi)=\bigg|\frac{105}{5!32\xi^{9/2}}(\xi-\frac{9}{16})^5\bigg|\]
+We note that the function within the absolute value signs increases from a negative value slowly until $x=1$
+The value of the function at $1$ is very close to zero $E\approx 0.00044$, whereas the function at $1/4$ is relatively large comparatively, $E\approx 0.041$. Thus, we note that the largest possible error occurs at $x=\frac{1}{4}\to E\approx 0.041$
+\item Calculate the Taylor expansion for $S(x)$,
+\[S(x)=\int_0^x\sin(\frac{\pi}{2}t^2)dt\]
+We consider the known expansion of $\sin(x)$,
+\[\sin(x)=\sum_{k=0}^{\infty}\frac{(-1)^kx^{2k+1}}{(2k+1)!}\]
+Substituting into this formula, we arrive at
+\[\sin(\frac{\pi}{2}x^2)=\sum_{k=0}^{\infty}\frac{(-1)^k(\frac{\pi}{2}x^2)^{2k+1}}{(2k+1)!}=\sum_{k=0}^{\infty}\frac{(-1)^k(\frac{\pi}{2})^{2k+1}x^{4k+2}}{(2k+1)!}\]
+Integrating from zero to $x$, we arrive at,
+\[S(x)=\sum_{k=0}^{\infty}\frac{(-1)^k(\frac{\pi}{2})^{2k+1}x^{4k+3}}{(4k+3)(2k+1)!}\]
+Thus, we have arrived at a Taylor Expansion definition for $S(x)$.
+\item Using a Jupyter Notebook, we compute the true value of $S(1)$ noting that $S$ is the Fresnel sin function, and has a ``true" representation in Python. Then, it is a simple matter to compute the error for any squence length.\\
+The error drops below the accuracy limit after 6 terms of the Taylor expansion are used.
+\item The error function may also be written as,
+\[erf(x)=\frac{2}{\sqrt{\pi}}e^{-x^2}\sum_{k=0}^{\infty}\frac{2^kx^{2k+1}}{1\cdot 3\cdot 5\cdots(2k+1)}\]
+We now compare this representation to the sum derived earlier in problem 4,
+\[erf(x)=\sum_{k=0}^{\infty}\frac{(-1)^kx^{2k+1}}{(2k+1)k!}\]
+Based on the computations performed in a Jupyter Notebook, we see that the the original sum requires only 5 terms, whereas the new method requires 6 terms to be within this error tolerance. We use the absolute error for this comparison, as the values that we are computing are on a similar order of magnitude, and the alternating nature of the sum makes the relative error harder to interpret for a tolerance comparison. It is also worth noting that the tolerance is given as a number, as opposed to a ratio of difference, and as such we must use absolute error to obtain a true numeric difference.
+\item Prove the following lemmas:
+\begin{enumerate}
+\item \begin{lem}
+If $ g(x) $ is an odd, integrable function over [-L,L], then
+\[\int_{-L}^{L}g(x)dx=0\]
+\end{lem}
+\begin{proof}
+Given that $g(x)$ is an odd function, we note,
+\[g(-x)=-g(x)\]
+Then, we consider the following integrals,
+\[\int_{0}^{L}g(x)dx=I\]
+\[\int_{-L}^{0}g(x)dx=\int_{-L}^{0}-g(-x)dx\]
+We then perform the following $u$-substitution,
+\begin{align*}
+u&=-x\\
+\frac{du}{dx}&=-1\\
+du&=-dx
+\end{align*}
+Then,
+\[\int_{-L}^{0}-g(-x)dx=\int_{L}^{0}g(u)du\]
+Next, we reverse the limits of the integral, negating it.
+\[\int_{L}^{0}g(u)du=-\int_{0}^{L}g(u)du=-I\]
+Then,
+\[\int_{-L}^{L}g(x)dx=\int_{0}^{L}g(x)dx-\int_{0}^{L}g(u)du=I-I=0\]
+As desired.
+\end{proof}
+\item \begin{lem}
+If g(x) is an even, integrable function over [-L,L], then
+\[\int_{-L}^{L}g(x)dx=2\int_{0}^{L}g(x)dx\]
+\end{lem}
+\begin{proof}
+Given that $g(x)$ is an even function, we note that $g(-x)=g(x)$. Then, we consider the following,
+\[\int_{-L}^{L}g(x)dx=\int_{0}^{L}g(x)dx+\int_{-L}^{0}g(x)dx=I+\int_{-L}^{0}g(x)dx\]
+We then consider the following $u$-substitution,
+\begin{align*}
+u&=-x\\
+\frac{du}{dx}&=-1\\
+du&=-dx
+\end{align*}
+Now,
+\[\int_{-L}^{0}g(x)dx=-\int_{L}^{0}g(-u)du=-\int_{L}^{0}g(u)du\]
+Reversing the limits on the integrand,
+\[-\int_{L}^{0}g(u)du=\int_{0}^{L}g(u)du=I\]
+Thus,
+\[\int_{-L}^{L}g(x)dx=\int_{0}^{L}g(x)dx+\int_{-L}^{0}g(x)dx=I+I=2\int_{0}^{L}g(x)dx\]
+As desired.
+\end{proof}
+\end{enumerate}
+\end{enumerate}
+\end{document}
