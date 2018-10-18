@@ -12,8 +12,148 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\sx}{\sum_{i=1}^nx_i}
+\newcommand{\sy}{\sum_{i=1}^ny_i}
+\newcommand{\sxy}{\sum_{i=1}^nx_iy_i}
+
 \newtheorem{lem}{Lemma}
 
 \begin{document}
-theth+
+\begin{enumerate}
+\item Which term grows faster as $n\in \N$ goes to infinity, $n!$ or $a^n$ for $a>1$?\\
+Consider,
+\[\lim_{n\to\infty}\frac{a^n}{n!}\]
+Next, we note that,
+\[\Gamma(n+1)=n!=\int_0^{\infty}x^ne^{-x}dx\]
+We now consider the behavior of the integrand over the domain of integration by finding the critical points.
+\begin{align*}
+\frac{d}{dx}x^ne^{-x} &= nx^{n-1}e^{-x}-x^ne^{-x} &&\text{Now set equal to zero and solve}\\
+0 &= nx^{n-1}e^{-x}-x^ne^{-x}\\
+\Leftrightarrow x^ne^{-x} &= nx^{n-1}e^{-x} \\
+\Leftrightarrow x &= n
+\end{align*}
+Thus, our critical values are $x=0,n$. Evaluating the integrand at these critical points,
+\begin{align*}
+f(0) &= 0^ne^{-0}=0\\
+f(n) &= n^ne^{-n}>0
+\end{align*}
+So, we know that the integrand grows from $0$ to $n^ne^{-n}$ as $x$ goes from $0$ to $n$, and then it decreases while remaining positive as $x\to \infty$. Thus, we may draw the following conclusion,
+\[\int_0^{\infty}x^ne^{-x}dx\geq \int_0^{n}x^ne^{-x}dx\]
+Next, we consider the behavior of $e^{-x}$ over the interval $x\in[0,n]$. Because we know that $\frac{d}{dx}e^{-x}=-e^{-x}$, we know that this function is monotonically decreasing, so, on the interval $x\in[0,n]$, we know that $e^{-x}$ is minimized at $e^{-n}$. So,
+\[\int_0^{\infty}x^ne^{-x}dx\geq \int_0^{n}x^ne^{-x}dx\geq \int_0^{n}x^ne^{-n}dx\]
+Next, we manipulate the function as follows,
+\begin{align*}
+\int_0^{n}x^ne^{-n}dx &= e^{-n}\int_0^{n}x^ndx\\
+&= e^{-n} \frac{n^{n+1}}{n+1}\\
+\Rightarrow n! &\geq e^{-n} \frac{n^{n+1}}{n+1}\\
+\Rightarrow \frac{1}{n!} &\leq e^n\frac{n+1}{n^{n+1}}
+\end{align*}
+So,
+\[0\leq \frac{1}{n!} \leq e^n\frac{n+1}{n^{n+1}}\]
+Multiplying by $a^n$ and taking the limit,
+\[\lim_{n\to \infty} 0 \leq \lim_{n\to \infty} \frac{a^n}{n!} \leq \lim_{n\to \infty} a^ne^n\frac{n+1}{n^{n+1}}\]
+\[\lim_{n\to \infty} a^ne^n\frac{n+1}{n^{n+1}}= \lim_{n\to \infty} \bigg(1+\frac{1}{n}\bigg)\bigg(\frac{ae}{n}\bigg)^n=\lim_{n\to \infty} \bigg(1+\frac{1}{n}\bigg) \lim_{n\to \infty} \bigg(\frac{ae}{n}\bigg)^n=\lim_{n\to \infty} \bigg(\frac{ae}{n}\bigg)^n\]
+Given that we have fixed $a\in \R$, $ae$ is a constant. Thus, in the limit, $n$ will evenutally surpass $ae$, and the limit will tend to zero. So, by the squeeze theorem, we may conclude $n!$ grows faster.
+\item Which term grows faster as $n\in \N$ goes to infinity, $n!$ or $n^n$?\\
+Consider,
+\[\lim_{n\to\infty}\frac{n!}{n^n}\]
+Next, we note that,
+\[\Gamma(n+1)=n!=\int_0^{\infty}x^ne^{-x}dx\]
+So, we may now compute the upper bound of this with respect to $n$. Note,
+\[\int_0^{\infty}x^ne^{-x}dx=\int_0^{\infty}x^ne^{-\frac{x}{2}}e^{-\frac{x}{2}}dx\]
+Now, we maximize the function $f(x)=x^ne^{\frac{-x}{2}}$ within the limits of integration, $x\in [0,\infty)$
+\begin{align*}
+\frac{d}{dx}x^ne^{\frac{-x}{2}} &= nx^{n-1}e^{\frac{-x}{2}}-\frac{1}{2}x^ne^{\frac{-x}{2}} &&\text{Now set equal to zero and solve}\\
+0 &= nx^{n-1}e^{\frac{-x}{2}}-\frac{1}{2}x^ne^{\frac{-x}{2}}\\
+\Leftrightarrow \frac{1}{2}x^ne^{\frac{-x}{2}} &= nx^{n-1}e^{\frac{-x}{2}}\\
+\Leftrightarrow x^ne^{\frac{-x}{2}} &= 2nx^{n-1}e^{\frac{-x}{2}}\\
+\Leftrightarrow x=2n
+\end{align*}
+Thus, our critical points for this function are $x=0,2n$. We now compute $f(0),\ f(2n)$.
+\begin{align*}
+f(0) &= 0^ne^{\frac{-0}{2}}=0\\
+f(2n) &= (2n)^ne^{-n}>0\
+\end{align*}
+Thus, $x=2n$ is the maximal value. Then,
+\begin{align*}
+\int_0^{\infty}x^ne^{-\frac{x}{2}}e^{-\frac{x}{2}}dx &\leq (2n)^ne^{-n}\int_0^{\infty}e^{-x/2}dx\\
+&=2(2n)^ne^{-n}\\
+&=2n^n\frac{2^n}{e^n}
+\end{align*}
+Then, $0\leq n! \leq 2n^n\big(\frac{2}{e}\big)^n$. Dividing by $n^n$ and taking the limit, we find,
+\[\lim_{n\to\infty} 0\leq \lim_{n\to\infty}\frac{n!}{n^n} \leq \lim_{n\to\infty}2\big(\frac{2}{e}\big)^n\]
+We note, $2<e \Rightarrow \lim_{n\to \infty} \big(\frac{2}{e}\big)^n\to 0$. So, we have,
+\[0\leq \lim_{n\to\infty}\frac{n!}{n^n} \leq 0\]
+Then, by the squeeze theorem, we may conclude,
+\[lim_{n\to\infty}\frac{n!}{n^n}=0\]
+Thus, we see that $n^n$ grows faster than $n!$.
+\item Using Steffensen's method with a tolerance of $10^{-8}$ and a starting root guess of $1.75$, we end up with $x^*=2.0663938632$. As desired. 
+\item Using Steffensen's method with a tolerance of $10^{-8}$ and a starting root guess of $.060538$, we arrive at $x^*=.060538000$
+\item We find that the interpolating value of $x^*=1.3964831$, with $f(x^*)=g(x^*)\approx .14222413$
+\item Given $n$ data points $(x_1,y_1),\ldots,(x_n,y_n)$ the linear least-squares line-of-best fit is the linear function \[f(x) = w_1x + w_0\] that minimizes the sum of squares
+
+\[E(w_0,w_1) = \sum_{j=1}^n\left( y_j - f(x_j)\right)^2.\]
+
+Show that the minimum value of $E$ occurs for $w_0$ and $w_1$ satisfying the two equations
+
+\begin{align*}
+w_0 n + w_1n\bar{x} = n\bar{y}\\
+w_0n\bar{x} + w_1 \sum_{j=1}^nx_j^2 = \sum_{j=1}^nx_jy_j
+\end{align*}
+\\\\
+We consider the error function defined above, expanding $f(x_j)$ in terms of $w_j$. Then,
+\[E(w_0,w_1)=\sum_{i=1}^n(y_i-w_1x_i-w_0)^2=\sum_{i=1}^ny_i^2-2w_1\sxy-2w_0\sy+w_1^2\sum_{i=1}^nx_i^2+2w_0w_1\sx+w_0^2\sum_{i=1}^n1\]
+In order to compute $w_0,w_1$ to minimize this function, we must derive $E$ with respect to both variables. These computations follow,
+\begin{align*}
+\frac{\partial E}{\partial w_0} &= -2\sy+2w_1\sx+2w_0n &&\text{Set equal to zero and solve} \\
+0 &= -2\sy+2w_1\sx+2w_0n \\
+2\sy &= 2w_1\sx+2w_0n \\
+\frac{n\sy}{n} &= \frac{n\sx w_1}{n} + 2nw_0\\
+n\bar{y} &= nw_0+n\bar{x}w_1
+\end{align*}
+\begin{align*}
+\frac{\partial E}{\partial w_1} &= -2\sxy +2w_1\sum_{i=1}^n x_i^2 +2w_0\sx &&\text{Set equal to zero and solve} \\
+0 &= -2\sxy +2w_1\sum_{i=1}^n x_i^2 +2w_0\sx \\
+\sxy &= w_1\sum_{i=1}^n x_i^2 +w_0\sx\\
+\sxy &= nw_0\bar{x}+w_1\sum_{i=1}^n x_i^2
+\end{align*}
+Thus, we have arrived at the equations desired from above. Next, we shall solve for the values with Cramer's rule. First, we compute into matrix form,
+\[\begin{bmatrix}
+n & n\bar{x} \\
+n\bar{x} & \sum_{i=1}^n x_i^2
+\end{bmatrix}
+\begin{bmatrix}
+w_0 \\
+w_1
+\end{bmatrix}=\begin{bmatrix}
+n\bar{y}\\
+\sxy
+\end{bmatrix}\]
+Then, \[D=n\sum_{i=1}^n x_i^2-n^2\bar{x}^2\]
+Substituting by Cramer's rule,
+\[\begin{bmatrix}
+n\bar{y} & n\bar{x} \\
+\sxy & \sum_{i=1}^n x_i^2
+\end{bmatrix}\]
+Then,
+\[D_{w_0}=n\bar{y}\sum_{i=1}^n x_i^2-n\bar{x}\sxy\]
+And,
+\[\begin{bmatrix}
+n & n\bar{y} \\
+n\bar{x} & \sxy
+\end{bmatrix}\]
+Then,
+\[D_{w_1}=n\sxy -n^2\bar{x}\bar{y}\]
+Finally, we may compute,
+\begin{align*}
+w_0 &= \frac{D_{w_0}}{D}=\frac{n\bar{y}\sum_{i=1}^n x_i^2-n\bar{x}\sxy}{n\sum_{i=1}^n x_i^2-n^2\bar{x}^2}\\
+w_1 &= \frac{D_{w_1}}{D}=\frac{n\sxy -n^2\bar{x}\bar{y}}{n\sum_{i=1}^n x_i^2-n^2\bar{x}^2}
+\end{align*}
+\item Using our 2D gradient descent algorithm, we compute the equation of best fit to be,
+\[f(x_j) \approx 2.80677502x_j-3.0665807\]
+Using then the direct equations for the coefficients to compute directly and arrive at the equation,
+\[\hat{f}(x_j)\approx 2.80684869x_j-3.066561824\]
+As such, we see that our gradient descent algorithm is accurate.
+\end{enumerate}
 \end{document}
