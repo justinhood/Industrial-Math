@@ -1,0 +1,29 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[top=2cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm,graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{\today}
+\chead{MATH 710 Assignment 3}
+\rhead{Justin Hood}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+\begin{enumerate}
+\item We consider the problem, of solving
+\[Ax=b\]
+where we require $A^{-1}$. This computation is intensive, so we wish to approximate $A^{-1}$ by solving the problem,
+\[By=x\]
+Where $B$ is our goal. As a measure of error, we consider the MSE formula,
+\[MSE=\sum(y-\hat{y})^2/N\]
+Here,
+\[MSE=\sum(By-x)^2/N\]
+Which may be computed as the L2 norm of the vector, $<By-x>$.  
+\end{enumerate}
+\end{document}
