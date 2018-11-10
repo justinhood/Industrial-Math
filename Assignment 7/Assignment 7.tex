@@ -15,5 +15,59 @@
 \newtheorem{lem}{Lemma}
 
 \begin{document}
-\[[\psi,\omega]=\frac{\partial \psi}{\partial y}\frac{\partial \omega}{\partial x}-\frac{\partial \psi}{\partial x}\frac{\partial \omega}{\partial y}=\frac{\partial \psi}{\partial y}\frac{\partial}{\partial x}\bigg[\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}\bigg]-\frac{\partial \psi}{\partial x}\frac{\partial}{\partial y}\bigg[\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}\bigg]=\frac{\partial}{\partial x}\bigg[\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}\bigg]+\frac{\partial}{\partial y}\bigg[\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}\bigg]\]
+%\[[\psi,\omega]=\frac{\partial \psi}{\partial y}\frac{\partial \omega}{\partial x}-\frac{\partial \psi}{\partial x}\frac{\partial \omega}{\partial y}=\frac{\partial \psi}{\partial y}\frac{\partial}{\partial x}\bigg[\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}\bigg]-\frac{\partial \psi}{\partial x}\frac{\partial}{\partial y}\bigg[\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}\bigg]=\frac{\partial}{\partial x}\bigg[\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}\bigg]+\frac{\partial}{\partial y}\bigg[\frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}\bigg]\]
+\begin{enumerate}
+\item We consider the derivation of,
+\[u''(x)=\frac{u(x+h)-2u(x)+u(x-h)}{h^2}+Ch^2\]
+To begin this derivation, we consider the fourth order Taylor expansions of both $u(x+h)$ and $u(x-h)$ as follows,
+\begin{align*}
+u(x+h) &= u(x)+hu'(x)+\frac{h^2}{2}u''(x)+\frac{h^3}{3}u'''(x)+\frac{h^4}{24}u^{(4)}(\xi)\\
+u(x-h) &= u(x)+hu'(x)+\frac{h^2}{2}u''(x)+\frac{h^3}{3}u'''(x)+\frac{h^4}{24}u^{(4)}(\xi)
+\end{align*}
+Where $\xi$ is the value of $x$ on the domain that maximizes the fourth derivative. Then, we add the functions together, noting that the first and third derivatives cancel out,
+\begin{align*}
+u(x+h)+u(x-h) &= 2u(x) +h^2u''(x)+\frac{h^4}{12}u^{(4)}(\xi)\\
+h^2u''(x) &=u(x+h)-2u(x)+u(x-h)-\frac{h^4}{12}u^{(4)}(\xi)\\
+u''(x) &= \frac{u(x+h)-2u(x)+u(x-h)}{h^2}-\frac{h^2}{12}u^{(4)}(\xi)
+\end{align*}
+Hence, we see that,
+\[C=-\frac{u^{(4)}(\xi)}{12}\]
+\item We now consider the application of this to the Laplacian,
+\[\nabla^2 u = \frac{\partial ^2 u}{\partial x^2}+ \frac{\partial ^2 u}{\partial y^2}\]
+From problem 1, we may write,
+\begin{align*}
+\frac{\partial ^2 u}{\partial x^2} &= \frac{u(x+h,y)-2u(x,y)+u(x-h,y)}{h^2}\\
+\frac{\partial ^2 u}{\partial y^2} &= \frac{u(x,y+h)-2u(x,y)+u(x,y-h)}{h^2}
+\end{align*}
+Thus, we find the centered difference to be,
+\[\nabla^2 u= \frac{u(x+h,y)+u(x,y+h)-4u(x,y)+u(x-h,y)+u(x,y-h)}{h^2}\]
+\item Consider,
+\[u(x,y,t)=e^{-2a^2\pi^2t}\sin(\pi x)\sin(\pi y)\]
+Then,
+\[\frac{\partial u}{\partial t}=(-2a^2\pi^2)e^{-2a^2\pi^2t}\sin(\pi x)\sin(\pi y)=(-2a^2\pi^2) u\]
+We now compute $\nabla^2 u$ as follows,
+\begin{align*}
+\frac{\partial u}{\partial x} &= \pi e^{-2a^2\pi^2t}\cos(\pi x)\sin(\pi y)\\
+\frac{\partial^2 u}{\partial x^2} &= -\pi^2u\\
+\frac{\partial u}{\partial y} &= \pi e^{-2a^2\pi^2t}\sin(\pi x)\cos(\pi y)\\
+\frac{\partial^2 u}{\partial y^2} &= -\pi^2u
+\end{align*}
+Thus,
+\[\nabla^2 u=-2\pi^2u \Leftrightarrow a^2\nabla^2 u = -2a^2\pi^2 u=\frac{\partial u}{\partial t}\]
+As desired.
+\addtocounter{enumi}{4}
+\item We consider the differential equation,
+\[\frac{\partial \omega}{\partial t}=\nu \nabla^2\omega+[\psi,\omega]\]
+Where,
+\[[\psi,\omega]=\frac{\partial \psi}{\partial y}\frac{\partial \omega}{\partial x}-\frac{\partial \psi}{\partial x}\frac{\partial \omega}{\partial y}\]
+Let $\psi(x,y)=y-x$. Then,
+\[[\psi,\omega]=\frac{\partial \omega}{\partial x}+\frac{\partial \omega}{\partial y}\]
+So, we see that our equation from above becomes,
+\[\frac{\partial \omega}{\partial t}=\nu\bigg(\frac{\partial^2 \omega}{\partial x^2}+\frac{\partial^2 \omega}{\partial y^2}\bigg)+\frac{\partial \omega}{\partial x}+\frac{\partial \omega}{\partial y}\]
+We now implement a centered difference finite difference scheme on the RHS of this equation as,
+\begin{align*}
+\frac{\partial \omega}{\partial t}=&\nu\bigg(\frac{\omega(x+h,y)+\omega(x,y+h)-4\omega(x,y)+\omega(x-h,y)+\omega(x,y-h)}{h^2}\bigg)\\
+&+\frac{\omega(x+h,y)-\omega(x-h,y)}{2h}+\frac{\omega(x,y+h)-\omega(x,y-h)}{2h}
+\end{align*}
+\end{enumerate}
 \end{document}
