@@ -29,7 +29,23 @@ We construct the matrix that defines the second spatial derivative using the CD2
 \includegraphics[scale=.8]{1mu2.png}
 \end{center}
 We see that as we increase $\mu$, the system diffuses faster, resulting in the steady state earlier.
-\item See jupyter notebook.
+\item We consider first, a semilog plot of the data, as seen below.
+\begin{center}
+\includegraphics[scale=.5]{semilog.png}
+\end{center}
+We see that there is a clear linear trend in this logged data. So, we perform a simple linear regression to solve the slope of the data. So, we use gradient descent to reduce the squared error. This result follows.
+\begin{center}
+\includegraphics[scale=.5]{descentresults.png}
+\end{center}
+\[y\approx -0.12413451-4.2535229t\]
+We know from the construction of the concentration profile that the logged peak data has slope equal to $-\pi^2\mu$. Thus, we compute $\mu$ to be,
+\[\mu=\frac{4.2535229}{\pi^2}=0.43097222048680517\]
+Finally, we use the same method as problem 1 to compute the propogation of the data. The results are as follows:
+\begin{center}
+\includegraphics[scale=.5]{2mu.png}
+\end{center}
+From this computation we see that the peak data at $t=1.5$ is,
+\[p(1.5)=0.0016992207655039224\]
 \item We construct the second order accurate differentiation matrix with constant boundary conditions as seen below.
 \[D=\begin{bmatrix}
 1 & 0 & 0 & 0 & 0 & \ldots & 0 & 0 & 0 & 0\\
@@ -111,34 +127,42 @@ Thus, our final solution is,
 \item We derive the Schwarzchild radius by the Laplacian method. First, we take the force equation and compute the squared velocity as follows.
 \begin{align*}
 m\frac{d^2r}{dt^2} &= -\frac{GMm}{r^2}\\
-\frac{d}{dt}\frac{dr}{dt} &= -\frac{GM}{r^2}\\
-\frac{d}{dt}v &= -GMr^{-2}\\
-v &= -GM\int r^{-2} dt\\
-v^2=v\frac{dr}{dt} &= -GM\int r^{-2} \frac{dr}{dt}dt=-GM\int r^{-2}dr\\
-v^2 &= \frac{GM}{r}+C
+\frac{d^2r}{dt^2} &= -\frac{GM}{r^2}
+\end{align*}
+Note,
+\[\frac{d^2 r}{dt^2}=\frac{dv}{dt}\]
+and,
+\[\frac{dv}{dt}=\frac{dv}{dr}\frac{dr}{dt}=v\frac{dv}{dr}\]
+So,
+\begin{align*}
+v\frac{dv}{dr} &=-\frac{GM}{r^2} \\
+\Leftrightarrow & \\
+\int vdv &= -GM\int r^{-2}dr\\
+\frac{v^2}{2}&=GMr^{-1}+C\\
+v^2&=2GMr^{-1}+C
 \end{align*}
 We now implement the initial condition $v(R)=v_e$ and solve for $C$.
 \begin{align*}
-v_e^2 &= \frac{GM}{R}+C\\
-C&=v_e^2-\frac{GM}{R}
+v_e^2 &= \frac{2GM}{R}+C\\
+C&=v_e^2-\frac{2GM}{R}
 \end{align*}
 So,
-\[v^2=\frac{GM}{r}-\frac{GM}{R}+v_e^2\]
+\[v^2=\frac{2GM}{r}-\frac{2GM}{R}+v_e^2\]
 Next, we consider the limit as $r\to\infty$. Here, $v(r)\to 0$. Thus,
-\[\lim_{r\to\infty} v(r)^2= \lim_{r\to\infty}\bigg[\frac{GM}{r}-\frac{GM}{R}+v_e^2\bigg]\Rightarrow 0=v_e^2-\frac{GM}{R}\Rightarrow v_e=\sqrt{\frac{GM}{R}}\]
+\[\lim_{r\to\infty} v(r)^2= \lim_{r\to\infty}\bigg[\frac{2GM}{r}-\frac{2GM}{R}+v_e^2\bigg]\Rightarrow 0=v_e^2-\frac{2GM}{R}\Rightarrow v_e=\sqrt{\frac{2GM}{R}}\]
 We now set $v_e=c$, and solve for $R$
-\[R_s=\frac{GM}{c^2}\]
+\[R_s=\frac{2GM}{c^2}\]
 We now compute the radii for various objects.\\
 \begin{center}
-\begin{tabular}{|r|l|l|}
+\begin{tabular}{|r|l|}
 \hline
-$Object$ & $R_s$ & $Swarzchild\ radius$\\\hline \hline
-$Sun (M=1.989\times 10^{30} kg)$ & $1476.923m$ & $2953.845m$ \\\hline
-$Earth (M=5.972\times 10^{24}kg)$ & $0.0044m$ & $0.0089m$\\\hline
-$Betelgeuse (M=2.387\times 10^{31}kg)$ & $17724.556$ & $35449.112$ \\\hline
-
-
+$Object$ & $Swarzchild\ radius$\\\hline \hline
+$Sun (M=1.989\times 10^{30} kg)$ & $2953.845m$ \\\hline
+$Earth (M=5.972\times 10^{24}kg)$ & $0.0089m$\\\hline
+$Betelgeuse (M=2.387\times 10^{31}kg)$ & $35449.112$ \\\hline
+$Ant-Man (M=78kg)$ & $1.158\times 10^-25$\\\hline
 \end{tabular}
 \end{center}
+Ant-mans radius is approximately equal to the cross sectional radius of 200 1MeV neutrinos.
 \end{enumerate}
 \end{document}

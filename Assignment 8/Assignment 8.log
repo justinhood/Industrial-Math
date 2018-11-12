@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.15)  10 NOV 2018 01:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.15)  12 NOV 2018 03:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -306,45 +306,60 @@ Package pdftex.def Info: 1mu2.png  used on input line 29.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
  <./1mu1.png> <./1mu2.png>]
-<4.png, id=17, 433.62pt x 289.08pt>
+<semilog.png, id=17, 433.62pt x 289.08pt>
+File: semilog.png Graphic file (type png)
+<use semilog.png>
+Package pdftex.def Info: semilog.png  used on input line 34.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+<descentresults.png, id=18, 433.62pt x 289.08pt>
+File: descentresults.png Graphic file (type png)
+<use descentresults.png>
+Package pdftex.def Info: descentresults.png  used on input line 38.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+<2mu.png, id=19, 454.69875pt x 310.15875pt>
+File: 2mu.png Graphic file (type png)
+<use 2mu.png>
+Package pdftex.def Info: 2mu.png  used on input line 45.
+(pdftex.def)             Requested size: 227.34882pt x 155.079pt.
+ [2 <./semilog.png> <./descentresults.png> <./2mu.png>]
+<4.png, id=26, 433.62pt x 289.08pt>
 File: 4.png Graphic file (type png)
 <use 4.png>
-Package pdftex.def Info: 4.png  used on input line 56.
+Package pdftex.def Info: 4.png  used on input line 72.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
- [2 <./4.png>]
-<5.png, id=25, 433.62pt x 289.08pt>
+ [3 <./4.png>]
+<5.png, id=34, 433.62pt x 289.08pt>
 File: 5.png Graphic file (type png)
 <use 5.png>
-Package pdftex.def Info: 5.png  used on input line 69.
+Package pdftex.def Info: 5.png  used on input line 85.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
-
-[3 <./5.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 130--132
+ [4 <./5.png>] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 154--156
 
  []
 
-[4] [5] (./Assignment 8.aux) ) 
+[6] (./Assignment 8.aux) ) 
 Here is how much of TeX's memory you used:
- 3013 strings out of 494880
- 40042 string characters out of 6179600
+ 3028 strings out of 494880
+ 40279 string characters out of 6179600
  109784 words of memory out of 5000000
- 6296 multiletter control sequences out of 15000+600000
+ 6308 multiletter control sequences out of 15000+600000
  5685 words of font info for 23 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 41i,12n,43p,527b,279s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "Assignment 8.pdf" (5 pages, 302956 bytes).
+ 41i,12n,43p,527b,309s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on "Assignment 8.pdf" (6 pages, 378678 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
+ 74 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
